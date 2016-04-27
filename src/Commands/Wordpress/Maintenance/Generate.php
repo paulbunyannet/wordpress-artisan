@@ -25,6 +25,12 @@ class Generate
     {
         $this->downClass = $downClass;
     }
+    
+    public static function getTemplateContent()
+    {
+        $template = __DIR__ .'/.maintenance';
+        return file_get_contents($template);
+    }
 
     /**
      * Create .gitignore file
@@ -51,7 +57,8 @@ class Generate
      */
     public function makeMaintenanceFile()
     {   $filePath = $this->downClass->getFilePath();
-        return exec('echo "$upgrading = time();" > '.$filePath);
+        $template = __DIR__ .'/.maintenance';
+        return exec('cat '.$template.' > '.$filePath);
     }
     
 }

@@ -58,4 +58,18 @@ class WordpressMaintenanceDownTest extends TestCase
         $this->assertContains('Wordpress is already down', $console);
 
     }
+
+    /**
+     * @test
+     */
+    public function it_has_the_same_content_as_the_maintenance_template()
+    {
+        $filename = '.'.$this->faker->uuid;
+        $dir = time();
+        $this->artisan('wp:down', ['--file' => $filename, '--dir' => $dir]);
+        $this->assertSame(
+            file_get_contents($this->getPublicPath() . '/' . $dir . '/' . $filename),
+            \Pbc\WordpressArtisan\Commands\Wordpress\Maintenance\Generate::getTemplateContent()
+        );
+    }
 }
