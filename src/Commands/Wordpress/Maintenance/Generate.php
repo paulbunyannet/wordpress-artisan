@@ -51,7 +51,7 @@ class Generate
      */
     public function makeMaintenanceFile()
     {   $filePath = $this->downClass->getFilePath();
-        return exec("touch {$filePath}");
+        return exec('echo "$upgrading = time();" > '.$filePath);
     }
     
 }

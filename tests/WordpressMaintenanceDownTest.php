@@ -23,7 +23,7 @@ class WordpressMaintenanceDownTest extends TestCase
     {
         $filename = '.'.$this->faker->uuid;
         $this->artisan('wp:down', ['--file' => $filename]);
-        $this->assertFileExists($this->getPath() . '/'. $filename);
+        $this->assertFileExists($this->getPublicPath() . '/'. $filename);
     }
     
     /**
@@ -31,9 +31,8 @@ class WordpressMaintenanceDownTest extends TestCase
      */
     public function it_has_created_the_down_file_without_parameter()
     {
-        $filename = '.wp-maintenance';
         $this->artisan('wp:down', []);
-        $this->assertFileExists($this->getPath() . '/'. $filename);
+        $this->assertFileExists($this->getPublicPath() . '/.maintenance');
     }
     
     /**
@@ -44,7 +43,7 @@ class WordpressMaintenanceDownTest extends TestCase
         $filename = '.'.$this->faker->uuid;
         $dir = time();
         $this->artisan('wp:down', ['--file' => $filename, '--dir' => $dir]);
-        $this->assertFileExists($this->getPath() . '/' . $dir . '/' . $filename);
+        $this->assertFileExists($this->getPublicPath() . '/' . $dir . '/' . $filename);
     }
     
     /**

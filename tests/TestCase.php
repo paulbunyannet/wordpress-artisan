@@ -16,6 +16,7 @@ abstract class TestCase extends Orchestra\Testbench\TestCase
     protected function getEnvironmentSetUp($app)
     {
         $app['config']->set('wordpress-artisan.path', $this->getPath());
+        $app['config']->set('wordpress-artisan.public_path', $this->getPublicPath());
     }
 
     protected function getPath()
@@ -23,17 +24,24 @@ abstract class TestCase extends Orchestra\Testbench\TestCase
         return __DIR__ . '/temp';
     }
 
+    protected function getPublicPath()
+    {
+        return $this->getPath() . '/public';
+    }
+
     public function setUp()
     {
         parent::setUp();
         $this->faker = Factory::create();
         exec('if [ ! -d "'. $this->getPath() .'" ]; then mkdir '. $this->getPath() .'; fi;');
+        exec('if [ ! -d "'. $this->getPublicPath().'" ]; then mkdir '. $this->getPublicPath() . '; fi;');
     }
 
     public function tearDown()
     {
         parent::tearDown();
 
+        # remove all the temp files
         exec('rm -rf '.$this->getPath());
 
         $this->consoleOutput = '';

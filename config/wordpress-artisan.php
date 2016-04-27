@@ -12,6 +12,18 @@ return [
      */
 
     'path' => realpath(base_path()),
+
+    /*
+     * --------------------------------------------------------------------------
+     * Path to the public directory
+     * --------------------------------------------------------------------------
+     *
+     * This option determines the path to the public directory, it's where
+     * the package will be looking for the document root. This is
+     * usually located in public but you may change that.
+     */
+
+    'public_path' => realpath(base_path('public')),
     
     /*
      * --------------------------------------------------------------------------
@@ -33,5 +45,5 @@ return [
      * usually named .wp-maintenance you may change that.
      */
 
-    'wp-maintenance-file' =>'.wp-maintenance',
+    'wp-maintenance-file' =>'.maintenance',
 ];

@@ -87,7 +87,7 @@ class Down extends Command
      */
     public function getPath()
     {
-        $storage = $this->manager->getConfig('path');
+        $storage = $this->manager->getConfig('public_path');
         $dir = $this->getDir();
 
         if ($dir) {
