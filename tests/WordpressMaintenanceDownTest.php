@@ -1,0 +1,62 @@
+<?php
+/**
+ * Class WordpressMaintenanceDownTest
+ */
+class WordpressMaintenanceDownTest extends TestCase
+{
+
+    /**
+     * @test
+     */
+    public function it_has_a_success_response_to_down()
+    {
+        $filename = '.'.$this->faker->uuid;
+        $this->artisan('wp:down', ['--file' => $filename]);
+        $console = $this->consoleOutput();
+        $this->assertContains('Wordpress set to maintenance mode.', $console);
+    }
+
+    /**
+     * @test
+     */
+    public function it_has_created_the_down_file()
+    {
+        $filename = '.'.$this->faker->uuid;
+        $this->artisan('wp:down', ['--file' => $filename]);
+        $this->assertFileExists($this->getPath() . '/'. $filename);
+    }
+    
+    /**
+     * @test
+     */
+    public function it_has_created_the_down_file_without_parameter()
+    {
+        $filename = '.wp-maintenance';
+        $this->artisan('wp:down', []);
+        $this->assertFileExists($this->getPath() . '/'. $filename);
+    }
+    
+    /**
+     * @test
+     */
+    public function it_has_created_the_down_file_in_a_specific_directory()
+    {
+        $filename = '.'.$this->faker->uuid;
+        $dir = time();
+        $this->artisan('wp:down', ['--file' => $filename, '--dir' => $dir]);
+        $this->assertFileExists($this->getPath() . '/' . $dir . '/' . $filename);
+    }
+    
+    /**
+     * @test
+     */
+    public function it_returns_error_if_already_down()
+    {
+        $filename = '.'.$this->faker->uuid;
+        $this->artisan('wp:down', ['--file' => $filename]);
+        $this->artisan('wp:down', ['--file' => $filename]);
+        $console = $this->consoleOutput();
+        $this->assertContains('Wordpress is already down', $console);
+
+    }
+}
