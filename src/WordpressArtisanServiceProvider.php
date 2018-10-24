@@ -22,7 +22,7 @@ class WordpressArtisanServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__ . '/../resources/lang/en/pbc/wordpressartisan/commands/wordpress/cleartransientcache.php' => resource_path('lang/en/pbc/wordpressartisan/commands/wordpress/cache/cleartransientcache.php'),
-        ]);
+        ], 'lang');
     }
 
     public function register()
