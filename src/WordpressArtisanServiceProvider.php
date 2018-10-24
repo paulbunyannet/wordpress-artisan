@@ -3,10 +3,6 @@ namespace Pbc\WordpressArtisan;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Filesystem\Filesystem;
-use Pbc\WordpressArtisan\Commands\Wordpress\Cache\ClearTransientCache;
-use Pbc\WordpressArtisan\Commands\Wordpress\Maintenance\Down;
-use Pbc\WordpressArtisan\Commands\Wordpress\Maintenance\Up;
-use Pbc\WordpressArtisan\Commands\Wordpress\SecretKey\Create;
 
 /**
  * Class ArtisanWordpressServiceProvider
@@ -41,10 +37,10 @@ class WordpressArtisanServiceProvider extends ServiceProvider
         });
         
         $this->commands([
-            Up::class,
-            Down::class,
-            Create::class,
-            ClearTransientCache::class,
+            \Pbc\WordpressArtisan\Commands\Wordpress\Maintenance\Up::class,
+            \Pbc\WordpressArtisan\Commands\Wordpress\Maintenance\Down::class,
+            \Pbc\WordpressArtisan\Commands\Wordpress\SecretKey\Create::class,
+            \Pbc\WordpressArtisan\Commands\Wordpress\Cache\ClearTransientCache::class,
         ]);
     }
 }
