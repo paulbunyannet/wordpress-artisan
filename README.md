@@ -3,13 +3,14 @@
 [![Build Status](https://travis-ci.org/paulbunyannet/wordpress-artisan.svg?branch=master)](https://travis-ci.org/paulbunyannet/wordpress-artisan)
 
     wp
-        wp:down              Put Wordpress in maintenance mode
-        wp:keys              Generate Wordpress Authentication keys
-        wp:up                Bring Wordpress back out of maintenance mode 
+        wp:down                   Put Wordpress in maintenance mode
+        wp:keys                   Generate Wordpress Authentication keys
+        wp:up                     Bring Wordpress back out of maintenance mode
+        wp:clear-transient-cache  Clear all the transient caches from the database
 
 ## Config
 
-Run `php artisan vendor:publish --provider="Pbc\WordpressArtisan\WordpressArtisanServiceProvider" --tag="config"` to get the configuration file and then update as needed.
+Run `php artisan vendor:publish --provider="Pbc\WordpressArtisan\WordpressArtisanServiceProvider" --tag="config" --tag="lang"` to get the configuration and language files and then update as needed.
 
 ## Commands
 
@@ -30,6 +31,14 @@ Builds Wordpress authentication keys and applies them to the .env file, similar 
 #### Usage
 
 `php artisan wp:keys` to generate new keys
+
+### Wordpress Clear Transient Cache
+
+Clear all the transient caches from the database. Requires https://github.com/corcel/corcel to be installed and configured.
+
+#### Usage
+
+`php artisan wp:clear-transient-cache` to clear the transient caches from the database
 
 ## Roadmap
 

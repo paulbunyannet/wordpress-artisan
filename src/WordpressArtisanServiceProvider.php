@@ -19,6 +19,10 @@ class WordpressArtisanServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../config/wordpress-artisan.php' => config_path('wordpress-artisan.php'),
         ], 'config');
+
+        $this->publishes([
+            __DIR__ . '/../resources/lang/en/pbc/wordpressartisan/commands/wordpress/cleartransientcache.php' => resource_path('lang/en/pbc/wordpressartisan/commands/wordpress/cache/cleartransientcache.php'),
+        ], 'lang');
     }
 
     public function register()
@@ -36,6 +40,7 @@ class WordpressArtisanServiceProvider extends ServiceProvider
             \Pbc\WordpressArtisan\Commands\Wordpress\Maintenance\Up::class,
             \Pbc\WordpressArtisan\Commands\Wordpress\Maintenance\Down::class,
             \Pbc\WordpressArtisan\Commands\Wordpress\SecretKey\Create::class,
+            \Pbc\WordpressArtisan\Commands\Wordpress\Cache\ClearTransientCache::class,
         ]);
     }
 }

@@ -35,5 +35,8 @@
     "test": [
       ""
     ]
-  }
+  },
+    "suggest": {
+        "jgrossi/corcel": "Needed for using wp:clear-cache command. See https://github.com/corcel/corcel for instructions."
+    }
 }
