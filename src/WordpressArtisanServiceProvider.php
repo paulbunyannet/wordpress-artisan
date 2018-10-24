@@ -3,6 +3,10 @@ namespace Pbc\WordpressArtisan;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Filesystem\Filesystem;
+use Pbc\WordpressArtisan\Commands\Wordpress\Cache\ClearTransientCache;
+use Pbc\WordpressArtisan\Commands\Wordpress\Maintenance\Down;
+use Pbc\WordpressArtisan\Commands\Wordpress\Maintenance\Up;
+use Pbc\WordpressArtisan\Commands\Wordpress\SecretKey\Create;
 
 /**
  * Class ArtisanWordpressServiceProvider
@@ -19,6 +23,10 @@ class WordpressArtisanServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../config/wordpress-artisan.php' => config_path('wordpress-artisan.php'),
         ], 'config');
+
+        $this->publishes([
+            __DIR__ . '/../resources/lang/en/pbc/wordpressartisan/commands/wordpress/cleartransientcache.php' => resource_path('lang/pbc/wordpressartisan/commands/wordpress/cache/cleartransientcache'),
+        ]);
     }
 
     public function register()
@@ -33,9 +41,10 @@ class WordpressArtisanServiceProvider extends ServiceProvider
         });
         
         $this->commands([
-            \Pbc\WordpressArtisan\Commands\Wordpress\Maintenance\Up::class,
-            \Pbc\WordpressArtisan\Commands\Wordpress\Maintenance\Down::class,
-            \Pbc\WordpressArtisan\Commands\Wordpress\SecretKey\Create::class,
+            Up::class,
+            Down::class,
+            Create::class,
+            ClearTransientCache::class,
         ]);
     }
 }
