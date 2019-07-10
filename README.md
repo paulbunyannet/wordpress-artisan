@@ -52,8 +52,10 @@ The wordpress-artisan package is open-sourced software licensed under the MIT li
 
 | laravel v | wordpress-artisan v |
 |-----------|---------------------|
-| 5.1 | 5.2 | 1.*                 |
-| 5.3       | >1.03 | 1.05        |
+| 5.1 - 5.2 | 1.0.*               |
+| 5.3       | >1.03 - 1.05        |
 | 5.4       | 1.1                 |
 | 5.5       | 1.2                 |
 | 5.6       | 1.3                 |
+| 5.7       | 1.4                 |
+| 5.8       | 1.5                 |
