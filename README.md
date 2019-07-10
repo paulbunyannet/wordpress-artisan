@@ -47,3 +47,13 @@ Add other useful artisan commands to interact with wordpress. If you have an ide
 ## License
 
 The wordpress-artisan package is open-sourced software licensed under the MIT license
+
+## laravel compatibility by tag
+
+| laravel v | wordpress-artisan v |
+|-----------|---------------------|
+| 5.1 | 5.2 | 1.*                 |
+| 5.3       | >1.03 | 1.05        |
+| 5.4       | 1.1                 |
+| 5.5       | 1.2                 |
+| 5.6       | 1.3                 |
