@@ -8,5 +8,7 @@
 - laravel 5.6 compatible
 ## v1.4 (2018-07-10)
 - laravel 5.7 compatible
+## v1.4 (2018-07-22)
+- laravel 5.8 compatible
 
 
