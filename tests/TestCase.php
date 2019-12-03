@@ -29,7 +29,7 @@ abstract class TestCase extends Orchestra\Testbench\TestCase
         return $this->getPath() . '/public';
     }
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
         $this->faker = Factory::create();
@@ -37,7 +37,7 @@ abstract class TestCase extends Orchestra\Testbench\TestCase
         exec('if [ ! -d "'. $this->getPublicPath().'" ]; then mkdir '. $this->getPublicPath() . '; fi;');
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         parent::tearDown();
 
@@ -58,6 +58,7 @@ abstract class TestCase extends Orchestra\Testbench\TestCase
 
     public function artisan($command, $parameters = [])
     {
+        parent::withoutMockingConsoleOutput();
         parent::artisan($command, array_merge($parameters, ['--no-interaction' => true]));
     }
 

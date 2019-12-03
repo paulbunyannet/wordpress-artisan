@@ -33,8 +33,7 @@ class Up extends Down
 
     /**
      * Create a new command instance.
-     *
-     * @return void
+     * @param Manager $manager
      */
     public function __construct(Manager $manager)
     {
@@ -45,13 +44,12 @@ class Up extends Down
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @throws \Exception
      */
     public function handle()
     {
-        $path = $this->getFilePath();
         if(file_exists($this->getFilePath())) {
-            $this->destroyer->removeMaintenanceFile($path);
+            $this->destroyer->removeMaintenanceFile();
             $this->info(PHP_EOL.'Wordpress is back up.'.PHP_EOL);
         } else {
             $this->error(PHP_EOL.'Wordpress is already up.'.PHP_EOL);

@@ -16,7 +16,9 @@ class Destroy
 
     /**
      * Remove the maintenance file
-     * @return mixed
+     *
+     * @return string
+     * @throws \Exception
      */
     public function removeMaintenanceFile()
     {

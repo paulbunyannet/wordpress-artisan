@@ -35,7 +35,8 @@ class Generate
     /**
      * Create .gitignore file
      *
-     * @return mixed
+     * @return string
+     * @throws \Exception
      */
     public function makeGitIgnore()
     {
@@ -53,7 +54,8 @@ class Generate
     /**
      * Create maintenance mode file
      *
-     * @return mixed
+     * @return string
+     * @throws \Exception
      */
     public function makeMaintenanceFile()
     {   $filePath = $this->downClass->getFilePath();

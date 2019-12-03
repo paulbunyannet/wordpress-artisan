@@ -24,7 +24,7 @@ class WordpressSecretKeyCreateTest extends TestCase
         $content = file_get_contents($this->getPath() . '/'. $filename);
 
         for($i=0; $i < count($this->keys); $i++) {
-            $this->assertContains($this->keys[$i].'="', $content);
+            $this->assertStringContainsString($this->keys[$i].'="', $content);
         }
     }
     /**
@@ -38,7 +38,7 @@ class WordpressSecretKeyCreateTest extends TestCase
         $content = file_get_contents($this->getPath() . '/'. $filename);
 
         for($i=0; $i < count($this->keys); $i++) {
-            $this->assertContains($this->keys[$i].'="', $content);
+            $this->assertStringContainsString($this->keys[$i].'="', $content);
         }
     }
 
@@ -61,7 +61,7 @@ class WordpressSecretKeyCreateTest extends TestCase
         $this->artisan('wp:keys', $secondConfig);
         $content = file_get_contents($this->getPath() . '/'. $filename);
         for($i=0; $i < count($this->keys); $i++) {
-            $this->assertContains($this->keys[$i].'="'. $secondConfig['--'.$this->keys[$i]] .'"', $content);
+            $this->assertStringContainsString($this->keys[$i].'="'. $secondConfig['--'.$this->keys[$i]] .'"', $content);
         }
 
     }

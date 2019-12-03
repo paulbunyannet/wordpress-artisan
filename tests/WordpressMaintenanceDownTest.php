@@ -1,4 +1,7 @@
 <?php
+
+use Pbc\WordpressArtisan\Commands\Wordpress\Maintenance\Generate;
+
 /**
  * Class WordpressMaintenanceDownTest
  */
@@ -13,7 +16,7 @@ class WordpressMaintenanceDownTest extends TestCase
         $filename = '.'.$this->faker->uuid;
         $this->artisan('wp:down', ['--file' => $filename]);
         $console = $this->consoleOutput();
-        $this->assertContains('Wordpress set to maintenance mode.', $console);
+        $this->assertStringContainsString('Wordpress set to maintenance mode.', $console);
     }
 
     /**
@@ -48,6 +51,7 @@ class WordpressMaintenanceDownTest extends TestCase
     
     /**
      * @test
+     * @group fail
      */
     public function it_returns_error_if_already_down()
     {
@@ -55,7 +59,7 @@ class WordpressMaintenanceDownTest extends TestCase
         $this->artisan('wp:down', ['--file' => $filename]);
         $this->artisan('wp:down', ['--file' => $filename]);
         $console = $this->consoleOutput();
-        $this->assertContains('Wordpress is already down', $console);
+        $this->assertStringContainsString('Wordpress is already down', $console);
 
     }
 
@@ -69,7 +73,7 @@ class WordpressMaintenanceDownTest extends TestCase
         $this->artisan('wp:down', ['--file' => $filename, '--dir' => $dir]);
         $this->assertSame(
             file_get_contents($this->getPublicPath() . '/' . $dir . '/' . $filename),
-            \Pbc\WordpressArtisan\Commands\Wordpress\Maintenance\Generate::getTemplateContent()
+            Generate::getTemplateContent()
         );
     }
 }

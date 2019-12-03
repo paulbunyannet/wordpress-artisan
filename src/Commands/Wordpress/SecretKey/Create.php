@@ -4,6 +4,7 @@ namespace Pbc\WordpressArtisan\Commands\Wordpress\SecretKey;
 
 use Illuminate\Console\Command;
 use Pbc\WordpressArtisan\Manager;
+use Illuminate\Support\Str;
 
 /**
  * Class Create
@@ -95,6 +96,7 @@ class Create extends Command
      * build file path to env file
      *
      * @return string
+     * @throws \Exception
      */
     private function getFilePath()
     {
@@ -111,8 +113,8 @@ class Create extends Command
         $content = [];
         for ($i = 0; $i < count($this->keys); $i++) {
             $holder = [];
-            $value = !$this->option($this->keys[$i]) || $this->option($this->keys[$i]) === 'generate' ? str_random(64) : $this->option($this->keys[$i]);
-            $holder['regex'] = str_replace_first($this->findRegExPlaceholder, $this->keys[$i], $this->findRegEx);
+            $value = !$this->option($this->keys[$i]) || $this->option($this->keys[$i]) === 'generate' ? Str::random(64) : $this->option($this->keys[$i]);
+            $holder['regex'] = Str::replaceFirst($this->findRegExPlaceholder, $this->keys[$i], $this->findRegEx);
             $holder['value'] = $this->keys[$i] . '="' . $value . '"';
             array_push($content, $holder);
         }
