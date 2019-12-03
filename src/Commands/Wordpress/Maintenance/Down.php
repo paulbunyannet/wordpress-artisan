@@ -3,7 +3,6 @@ namespace Pbc\WordpressArtisan\Commands\Wordpress\Maintenance;
 
 use Illuminate\Console\Command;
 use Pbc\WordpressArtisan\Manager;
-use Symfony\Component\Console\Input\InputOption;
 
 
 /**
@@ -40,8 +39,7 @@ class Down extends Command
 
     /**
      * Create a new command instance.
-     *
-     * @return void
+     * @param Manager $manager
      */
     public function __construct(Manager $manager)
     {
@@ -54,6 +52,7 @@ class Down extends Command
 
     /**
      * @return string
+     * @throws \Exception
      */
     public function getFilePath()
     {
@@ -61,29 +60,25 @@ class Down extends Command
     }
 
     /**
-     * Execute the console command.
      *
-     * @return mixed
      */
     public function handle()
     {
-        $file = $this->getFileName();
-        $path = $this->getPath();
         $filePath = $this->getFilePath();
         $eol = PHP_EOL;
 
-        $this->generator->makeGitIgnore($file, $path);
-
+        $this->generator->makeGitIgnore();
         if (file_exists($this->getFilePath())) {
             $this->error(PHP_EOL . 'Wordpress is already down.' . PHP_EOL);
         } else {
-            $this->generator->makeMaintenanceFile($filePath);
+            $this->generator->makeMaintenanceFile();
             $this->info("{$eol}Wordpress set to maintenance mode. Either run \"artisan wp:up\" to {$eol} bring the site back up or manually delete {$eol} {$filePath}.");
         }
     }
 
     /**
      * @return string
+     * @throws \Exception
      */
     public function getPath()
     {
@@ -96,6 +91,10 @@ class Down extends Command
         return $storage . '/';
     }
 
+    /**
+     * @return array|bool|mixed|string|null
+     * @throws \Exception
+     */
     public function getFileName()
     {
         if (!$this->option('file') || $this->option('file') === 'default') {

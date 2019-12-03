@@ -14,7 +14,7 @@ class WordpressMaintenanceUpTest extends TestCase
         $this->artisan('wp:down', ['--file' => $filename]);
         $this->artisan('wp:up', ['--file' => $filename]);
         $console = $this->consoleOutput();
-        $this->assertContains('Wordpress is back up', $console);
+        $this->assertStringContainsString('Wordpress is back up', $console);
 
     }
 
@@ -48,6 +48,6 @@ class WordpressMaintenanceUpTest extends TestCase
         $filename = '.'.$this->faker->uuid;
         $this->artisan('wp:up', ['--file' => $filename]);
         $console = $this->consoleOutput();
-        $this->assertContains('Wordpress is already up', $console);
+        $this->assertStringContainsString('Wordpress is already up', $console);
     }
 }

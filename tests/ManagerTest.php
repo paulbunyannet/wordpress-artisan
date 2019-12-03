@@ -5,7 +5,7 @@
 class ManagerTest extends TestCase
 {
 
-    public function tearDown()
+    public function tearDown() : void
     {
         parent::tearDown();
         Mockery::close();
@@ -38,10 +38,10 @@ class ManagerTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Exception
      */
     public function it_throws_an_exception_if_the_key_is_missing()
     {
+        $this->expectException(Exception::class);
         $filesystemMock = Mockery::mock('Illuminate\Filesystem\Filesystem');
         $values = [$this->faker->uuid, $this->faker->uuid];
         $key = [$this->faker->uuid, $this->faker->uuid];
