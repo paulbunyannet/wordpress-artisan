@@ -26,7 +26,7 @@ class WordpressMaintenanceUpTest extends TestCase
         $filename = '.'.$this->faker->uuid;
         $this->artisan('wp:down', ['--file' => $filename]);
         $this->artisan('wp:up', ['--file' => $filename]);
-        $this->assertFileNotExists($this->getPublicPath() . '/'. $filename);
+        $this->assertFileDoesNotExist($this->getPublicPath() . '/'. $filename);
 
     }
 
@@ -37,7 +37,7 @@ class WordpressMaintenanceUpTest extends TestCase
     {
         $this->artisan('wp:down', []);
         $this->artisan('wp:up', []);
-        $this->assertFileNotExists($this->getPublicPath() . '/.maintenance');
+        $this->assertFileDoesNotExist($this->getPublicPath() . '/.maintenance');
     }
 
     /**
