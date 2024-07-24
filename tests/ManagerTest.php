@@ -11,10 +11,7 @@ class ManagerTest extends TestCase
         Mockery::close();
     }
 
-    /**
-     * @test
-     */
-    public function it_has_config_key()
+    public function test_it_has_config_key()
     {
         $filesystemMock = Mockery::mock('Illuminate\Filesystem\Filesystem');
         $value = $this->faker->uuid;
@@ -23,10 +20,8 @@ class ManagerTest extends TestCase
         $manager = new \Pbc\WordpressArtisan\Manager($filesystemMock, $config);
         $this->assertSame($value, $manager->getConfig($key));
     }
-    /**
-     * @test
-     */
-    public function it_has_config_keys()
+
+    public function test_it_has_config_keys()
     {
         $filesystemMock = Mockery::mock('Illuminate\Filesystem\Filesystem');
         $values = [$this->faker->uuid, $this->faker->uuid];
@@ -36,10 +31,7 @@ class ManagerTest extends TestCase
         $this->assertSame($config, $manager->getConfig());
     }
 
-    /**
-     * @test
-     */
-    public function it_throws_an_exception_if_the_key_is_missing()
+    public function test_it_throws_an_exception_if_the_key_is_missing()
     {
         $this->expectException(Exception::class);
         $filesystemMock = Mockery::mock('Illuminate\Filesystem\Filesystem');
@@ -49,6 +41,4 @@ class ManagerTest extends TestCase
         $manager = new \Pbc\WordpressArtisan\Manager($filesystemMock, $config);
         $manager->getConfig(time());
     }
-
-    
 }
