@@ -13,10 +13,7 @@ class WordpressSecretKeyCreateTest extends TestCase
         'NONCE_SALT'
     ];
 
-    /**
-     * @test
-     */
-    public function it_has_correct_keys_set_to_env_file()
+    public function test_it_has_correct_keys_set_to_env_file()
     {
         $filename = '.'.$this->faker->uuid;
         $this->artisan('wp:keys', ['--file' => $filename]);
@@ -27,10 +24,8 @@ class WordpressSecretKeyCreateTest extends TestCase
             $this->assertStringContainsString($this->keys[$i].'="', $content);
         }
     }
-    /**
-     * @test
-     */
-    public function it_has_correct_keys_set_to_default_file()
+
+    public function test_it_has_correct_keys_set_to_default_file()
     {
         $filename = '.env';
         $this->artisan('wp:keys', []);
@@ -42,10 +37,7 @@ class WordpressSecretKeyCreateTest extends TestCase
         }
     }
 
-    /**
-     * @test
-     */
-    public function it_has_correct_keys_updated_to_env_file()
+    public function test_it_has_correct_keys_updated_to_env_file()
     {
         /**
          * Setup the config the first time and then update the values
@@ -63,7 +55,5 @@ class WordpressSecretKeyCreateTest extends TestCase
         for($i=0; $i < count($this->keys); $i++) {
             $this->assertStringContainsString($this->keys[$i].'="'. $secondConfig['--'.$this->keys[$i]] .'"', $content);
         }
-
     }
-
 }

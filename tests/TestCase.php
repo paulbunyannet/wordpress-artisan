@@ -2,7 +2,7 @@
 
 use Faker\Factory;
 
-abstract class TestCase extends Orchestra\Testbench\TestCase
+class TestCase extends Orchestra\Testbench\TestCase
 {
     /** @var \Faker\Factory */
     protected $faker;

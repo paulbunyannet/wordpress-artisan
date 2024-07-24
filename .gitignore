@@ -5,3 +5,5 @@ composer.phar
 .DS_Store
 tests/temp/*
 tests/coverage/*
+.phpunit.result.cache
+.phpunit.cache
